@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #1b1b1b;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 40px;
+}
+
+.left, .right {
+    width: 40%;
+    min-height: 300px;
+    padding: 20px;
+    background: #262626;
+    border-radius: 10px;
+}
+
+.item {
+    background: #333;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: grab;
+}
+
+.dropzone {
+    background: #444;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    min-height: 40px;
+}
+.dropzone.correct {
+    background: green;
+}
+.dropzone.wrong {
+    background: red;
+}
