@@ -1,41 +1,83 @@
 body {
   font-family: Arial, sans-serif;
   padding: 10px;
+  background: #f9f9f9;
+  text-align: center;
 }
 
 .area {
   position: relative;
   width: 100%;
   height: 300px;
-  border: 2px solid #000;
+  border: 2px solid #333;
+  border-radius: 10px;
   margin-bottom: 20px;
+  background: #fff;
   overflow: hidden;
-  touch-action: none; /* mobilde kaydırmayı engelle */
+  touch-action: none;
 }
 
 .item {
   position: absolute;
-  padding: 10px 20px;
-  background: #f06;
+  padding: 10px 15px;
+  background: linear-gradient(135deg,#f06,#f79);
   color: #fff;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   cursor: grab;
   user-select: none;
   touch-action: none;
+  transition: transform 0.2s;
+}
+
+.item.dragging {
+  transform: scale(1.1);
+  z-index: 1000;
 }
 
 .dropzones {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .dropzone {
-  flex: 1;
-  height: 100px;
-  border: 2px dashed #333;
+  flex: 1 0 40%;
+  min-height: 60px;
+  border: 2px dashed #999;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  padding: 10px;
+  text-align: center;
   background: #eee;
+  font-weight: bold;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.dropzone.correct {
+  background: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.dropzone.wrong {
+  background: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
 }
