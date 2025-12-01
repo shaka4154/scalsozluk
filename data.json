@@ -1,7 +1,16 @@
 {
   "items": [
-    { "name": "Beyin yıkamak", "meaning": "Kişiyi kendi görüş ve düşüncelerinden ayırıp başka bir görüşü benimsetmek", "x": 20, "y": 20 },
-    { "name": "Ayağını yorganına göre uzat", "meaning": "Gelirine göre harcama yap", "x": 20, "y": 100 },
-    { "name": "Damlaya damlaya göl olur", "meaning": "Küçük birikimler zamanla büyük olur", "x": 20, "y": 180 }
+    { "name": "Ağzınla kuş tutsan nafile", "meaning": "Söylediklerinle bir işe yaramaz" },
+    { "name": "Ölme eşeğim ölme", "meaning": "Boş yere korkma, abartma" },
+    { "name": "Lafla peynir gemisi yürümez", "meaning": "Sadece sözle iş ilerlemez" },
+    { "name": "Göze girmek", "meaning": "Birinin beğenisini kazanmak" },
+    { "name": "Etekleri zil çalmak", "meaning": "Çok sevinmek" },
+    { "name": "Ağaç yaşken eğilir", "meaning": "İnsan küçük yaşta eğitilmeli" },
+    { "name": "Damlaya damlaya göl olur", "meaning": "Küçük birikimler zamanla çoğalır" },
+    { "name": "Gülme komşuna gelir başına", "meaning": "Başkalarının talihsizliği seni güldürmemeli" },
+    { "name": "Acele işe şeytan karışır", "meaning": "Aceleden hata olur" },
+    { "name": "Gülü seven dikenine katlanır", "meaning": "Güzel şeyler bazen zahmetlidir" },
+    { "name": "Üzüm üzüme baka baka kararır", "meaning": "İnsan çevresinden etkilenir" },
+    { "name": "Dereyi görmeden paçaları sıvamak", "meaning": "İşin sonucunu görmeden hazırlık yapmak" }
   ]
 }
