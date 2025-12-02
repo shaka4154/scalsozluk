@@ -2,21 +2,24 @@ const itemsContainer = document.querySelector('.items');
 const buttons = document.querySelectorAll('.option-btn');
 const resultDiv = document.getElementById('result');
 const restartBtn = document.getElementById('restartBtn');
+const mainMenuBtn = document.getElementById('mainMenuBtn');
 
 let correctCount = 0;
 const totalCount = 4;
+let selectedItem = null;
 
-// JSON’dan veri çekme ve oyun başlatma
-function startGame(){
+// Oyun başlat
+function startGame() {
   itemsContainer.innerHTML = '';
   correctCount = 0;
+  selectedItem = null;
   updateResult();
 
   fetch('data.json')
     .then(res => res.json())
     .then(data => {
       const allItems = [...data.atasozleri, ...data.deyimler];
-      const leftItems = allItems.sort(() => 0.5 - Math.random()).slice(0,totalCount);
+      const leftItems = allItems.sort(() => 0.5 - Math.random()).slice(0, totalCount);
 
       leftItems.forEach(item => {
         const div = document.createElement('div');
@@ -25,93 +28,53 @@ function startGame(){
         div.dataset.type = data.atasozleri.includes(item) ? 'atasozu' : 'deyim';
         itemsContainer.appendChild(div);
 
-        // Masaüstü drag
-        div.draggable = true;
-        div.addEventListener('dragstart', e => {
-          if(div.classList.contains('matched') || div.classList.contains('wrong')) return e.preventDefault();
-          e.dataTransfer.setData('text/plain', div.dataset.type);
+        // Kart seçme
+        div.addEventListener('click', () => {
+          if (div.classList.contains('matched') || div.classList.contains('wrong')) return;
+
+          if (selectedItem) {
+            selectedItem.classList.remove('selected');
+            selectedItem.style.background = '';
+          }
+
+          selectedItem = div;
           div.classList.add('selected');
-        });
-        div.addEventListener('dragend', e => div.classList.remove('selected'));
-
-        // Mobil touch
-        div.addEventListener('touchstart', e => {
-          if(div.classList.contains('matched') || div.classList.contains('wrong')) return;
-          div.classList.add('selected');
-        });
-
-        div.addEventListener('touchmove', e => {
-          e.preventDefault();
-          const touch = e.touches[0];
-          div.style.position = 'absolute';
-          div.style.left = touch.pageX - div.offsetWidth/2 + 'px';
-          div.style.top = touch.pageY - div.offsetHeight/2 + 'px';
-          div.style.zIndex = 1000;
-        });
-
-        div.addEventListener('touchend', e => {
-          div.style.position = '';
-          div.style.left = '';
-          div.style.top = '';
-          div.style.zIndex = '';
-
-          const selected = document.querySelector('.item.selected');
-          if(!selected) return;
-
-          let dropped = false;
-          buttons.forEach(btn => {
-            const btnRect = btn.getBoundingClientRect();
-            const divRect = selected.getBoundingClientRect();
-
-            if(divRect.left + divRect.width/2 > btnRect.left &&
-               divRect.left + divRect.width/2 < btnRect.right &&
-               divRect.top + divRect.height/2 > btnRect.top &&
-               divRect.top + divRect.height/2 < btnRect.bottom) {
-
-              if(selected.dataset.type === btn.dataset.type){
-                selected.classList.add('matched');
-                correctCount++;
-              } else {
-                selected.classList.add('wrong');
-              }
-              selected.draggable = false;
-              dropped = true;
-            }
-          });
-
-          selected.classList.remove('selected');
-          updateResult();
+          div.style.background = '#FFD700'; // seçilince sarı
         });
       });
     });
 }
 
-// Masaüstü drop
+// Sağdaki butonlar
 buttons.forEach(btn => {
-  btn.addEventListener('dragover', e => e.preventDefault());
-  btn.addEventListener('drop', e => {
-    e.preventDefault();
-    const dragged = document.querySelector('.item.selected');
-    if(!dragged) return;
+  btn.addEventListener('click', () => {
+    if (!selectedItem) return;
 
-    if(dragged.dataset.type === btn.dataset.type){
-      dragged.classList.add('matched');
+    if (selectedItem.dataset.type === btn.dataset.type) {
+      selectedItem.classList.add('matched'); // yeşil
       correctCount++;
     } else {
-      dragged.classList.add('wrong');
+      selectedItem.classList.add('wrong'); // kırmızı
     }
-    dragged.classList.remove('selected');
-    dragged.draggable = false;
+
+    selectedItem.classList.remove('selected');
+    selectedItem.style.background = '';
+    selectedItem = null;
     updateResult();
   });
 });
 
-function updateResult(){
+function updateResult() {
   resultDiv.textContent = `${correctCount}/${totalCount}`;
 }
 
+// Yeniden başlat
 restartBtn.addEventListener('click', startGame);
 
-// Başlat
-startGame();
+// Ana Menü butonu
+mainMenuBtn.addEventListener('click', () => {
+  // Örnek: başka bir sayfaya yönlendirme
+  window.location.href = "../index.html"; // kendi ana menü sayfanın yolu
+});
 
+startGame();
