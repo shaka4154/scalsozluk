@@ -1,0 +1,99 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #000;
+  margin: 0;
+  padding: 20px;
+}
+
+header h1 {
+  color: #fff;
+}
+
+/* Container yan yana */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 20px;
+  min-height: 300px;
+}
+
+/* Sol kolon */
+.items {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Ortadaki butonlar üst üste ve ortada */
+.meanings {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  align-self: center;
+}
+
+.item {
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: white;
+  color: #000;
+  cursor: grab;
+  user-select: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.item:hover { transform: scale(1.05); }
+.item.matched { background: #28a745; color: #fff; cursor: default; } /* doğru kart yeşil */
+.item.wrong { background: #dc3545; color: #fff; cursor: default; } /* yanlış kart kırmızı */
+
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+}
+
+
+
+/* Drop butonları */
+.option-btn {
+  width: 100%;
+  padding: 15px 0;
+  border-radius: 12px;
+  background: #fff;
+  color: #000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.2s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.option-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+}
+
+.option-btn.correct { background: #28a745 !important; color: #fff; }
+.option-btn.wrong { background: #dc3545 !important; color: #fff; }
+
+
+
+/* MOBİL - butonlar üst üste, ortada */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .items { width: 50%; }
+  .meanings { width: 40%; gap: 10px; }
+}

@@ -1,0 +1,35 @@
+{
+  "atasozleri": [
+    { "name": "Dağ dağa kavuşmaz, insan insana kavuşur", "meaning": "Ne kadar uzak düşülse de insanlar bir gün karşılaşır" },
+    { "name": "Ağaç yaşken eğilir", "meaning": "İnsan küçük yaşta eğitilmeli" },
+    { "name": "Akılsız başın cezasını ayaklar çeker", "meaning": "Akılsız insanların hatası başkalarına zarar verir" },
+    { "name": "Damlaya damlaya göl olur", "meaning": "Küçük birikimler zamanla çoğalır" },
+    { "name": "Gülme komşuna gelir başına", "meaning": "Başkalarının talihsizliği seni güldürmemeli" },
+    { "name": "Her horoz kendi çöplüğünde öter", "meaning": "Herkes kendi alanında söz sahibidir" },
+    { "name": "Ateş olmayan yerden duman çıkmaz", "meaning": "Söylentinin bir sebebi vardır" },
+    { "name": "Acele işe şeytan karışır", "meaning": "Aceleden hata olur" },
+    { "name": "Gülü seven dikenine katlanır", "meaning": "Güzel şeyler bazen zahmetlidir" },
+    { "name": "Dereyi görmeden paçaları sıvamak", "meaning": "İşin sonucunu görmeden hazırlık yapmak" },
+    { "name": "Üzüm üzüme baka baka kararır", "meaning": "İnsan çevresinden etkilenir" },
+    { "name": "Tavşan dağa küsmüş, dağın haberi yok", "meaning": "Küçük birinin kırgınlığı karşı tarafı ilgilendirmez" }
+  ],
+  "deyimler": [
+    { "name": "Onun ipiyle kuyuya inilmez", "meaning": "Ona güvenilmez, sözüne itimat edilmez" },
+    { "name": "Ağzınla kuş tutsan nafile", "meaning": "Söylediklerinle bir işe yaramaz" },
+    { "name": "Ölme eşeğim ölme", "meaning": "Boş yere korkma, abartma" },
+    { "name": "Saman altından su yürütmek", "meaning": "Gizlice iş çevirmek" },
+    { "name": "Kaş yapayım derken göz çıkarmak", "meaning": "İyilik yaparken zarar vermek" },
+    { "name": "Keçileri kaçırmak", "meaning": "Aklını oynatmak, delirmek" },
+    { "name": "Otuz iki dişi birden döküldü", "meaning": "Çok şiddetli ve yüksek sesle gülmek" },
+    { "name": "Dolap çevirmek", "meaning": "Gizli ve hileli işler yapmak" },
+    { "name": "Eşek sudan gelinceye kadar dövmek", "meaning": "Birini çok şiddetle cezalandırmak" },
+    { "name": "Lafla peynir gemisi yürümez", "meaning": "Sadece sözle iş ilerlemez" },
+    { "name": "Göze girmek", "meaning": "Birinin beğenisini kazanmak" },
+    { "name": "Dingonun ahırı", "meaning": "Düzensiz ve karışık yer" },
+    { "name": "Etekleri zil çalmak", "meaning": "Çok sevinmek" },
+    { "name": "Leb demeden leblebiyi anlamak", "meaning": "Söylemeden ne demek istendiğini anlamak" },
+    { "name": "Ortada kalmak", "meaning": "Arada, sahipsiz kalmak" },
+    { "name": "Sapı silmek", "meaning": "Tamamen unutmak, akıldan çıkarmak" },
+    { "name": "Ocağına incir dikmek", "meaning": "Birine büyük felaket getirmek" }
+  ]
+}
