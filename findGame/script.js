@@ -7,7 +7,6 @@ const mainMenuBtn = document.getElementById('mainMenuBtn');
 let correctCount = 0;
 const totalCount = 4;
 
-// Oyun başlatma
 function startGame() {
   itemsContainer.innerHTML = '';
   correctCount = 0;
@@ -27,61 +26,96 @@ function startGame() {
         div.draggable = true;
         itemsContainer.appendChild(div);
 
+        // Desktop drag
         div.addEventListener('dragstart', e => {
           if(div.classList.contains('matched') || div.classList.contains('wrong')) return e.preventDefault();
           e.dataTransfer.setData('text/plain', div.dataset.type);
           div.classList.add('selected');
         });
-
         div.addEventListener('dragend', e => div.classList.remove('selected'));
+
+        // Mobile touch
+        div.addEventListener('touchstart', e => {
+          if(div.classList.contains('matched') || div.classList.contains('wrong')) return;
+          div.classList.add('selected');
+        });
+
+        div.addEventListener('touchmove', e => {
+          e.preventDefault();
+          const touch = e.touches[0];
+          div.style.position = 'absolute';
+          div.style.left = touch.pageX - div.offsetWidth/2 + 'px';
+          div.style.top = touch.pageY - div.offsetHeight/2 + 'px';
+          div.style.zIndex = 1000;
+        });
+
+        div.addEventListener('touchend', e => {
+          div.style.position = '';
+          div.style.left = '';
+          div.style.top = '';
+          div.style.zIndex = '';
+
+          const selected = document.querySelector('.item.selected');
+          if(!selected) return;
+
+          let dropped = false;
+          buttons.forEach(btn => {
+            const btnRect = btn.getBoundingClientRect();
+            const divRect = selected.getBoundingClientRect();
+
+            if(divRect.left + divRect.width/2 > btnRect.left &&
+               divRect.left + divRect.width/2 < btnRect.right &&
+               divRect.top + divRect.height/2 > btnRect.top &&
+               divRect.top + divRect.height/2 < btnRect.bottom) {
+
+              if(selected.dataset.type === btn.dataset.type){
+                selected.classList.add('matched');
+                correctCount++;
+              } else {
+                selected.classList.add('wrong');
+              }
+              selected.draggable = false;
+              dropped = true;
+            }
+          });
+
+          selected.classList.remove('selected');
+          updateResult();
+        });
       });
     });
 }
 
-// Random seç
 function getRandom(arr, n){
   return arr.sort(() => 0.5 - Math.random()).slice(0, n);
 }
 
-// Drop eventleri
+// Desktop drop
 buttons.forEach(btn => {
   btn.addEventListener('dragover', e => e.preventDefault());
-
   btn.addEventListener('drop', e => {
     e.preventDefault();
     const draggedDiv = document.querySelector('.item.selected');
     if(!draggedDiv) return;
 
-    const draggedType = draggedDiv.dataset.type;
-    const dropType = btn.dataset.type;
-
-    if(draggedType === dropType){
+    if(draggedDiv.dataset.type === btn.dataset.type){
       draggedDiv.classList.add('matched');
       draggedDiv.draggable = false;
       correctCount++;
-      updateResult();
     } else {
       draggedDiv.classList.add('wrong');
-      draggedDiv.draggable = false; // bir daha değişmesin
-      updateResult();
+      draggedDiv.draggable = false;
     }
-
     draggedDiv.classList.remove('selected');
+    updateResult();
   });
 });
 
-// 4/4 sayacı güncelle
-function updateResult() {
+function updateResult(){
   resultDiv.textContent = `${correctCount}/${totalCount}`;
 }
 
-// Restart
 restartBtn.addEventListener('click', startGame);
+mainMenuBtn.addEventListener('click', () => { window.location.href = 'index.html'; });
 
-// Ana Menü (örnek yönlendirme)
-mainMenuBtn.addEventListener('click', () => {
-  window.location.href = '../index.html'; // burayı kendi ana menü sayfanla değiştir
-});
-
-// Oyunu başlat
 startGame();
