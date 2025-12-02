@@ -4,11 +4,51 @@ body {
   background: #000;
   margin: 0;
   padding: 20px;
+  color: #fff;
+}
+
+/* Header */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 header h1 {
   color: #fff;
+  margin: 10px 0;
 }
+
+/* Logo */
+.logo {
+  width: 100px;
+  height: auto;
+  margin: 10px 0;
+}
+
+/* Ana Menü butonu */
+#mainMenuBtn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+#mainMenuBtn:hover { background: #444; }
+
+/* Yeniden başlat butonu header altında ortada */
+
+
+#restartBtn:hover { background: #444; }
 
 /* Container yan yana */
 .container {
@@ -39,6 +79,7 @@ header h1 {
   align-self: center;
 }
 
+/* Kartlar */
 .item {
   padding: 12px 20px;
   border-radius: 12px;
@@ -53,15 +94,6 @@ header h1 {
 .item:hover { transform: scale(1.05); }
 .item.matched { background: #28a745; color: #fff; cursor: default; } /* doğru kart yeşil */
 .item.wrong { background: #dc3545; color: #fff; cursor: default; } /* yanlış kart kırmızı */
-
-#result {
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 18px;
-  color: #fff;
-}
-
-
 
 /* Drop butonları */
 .option-btn {
@@ -81,10 +113,27 @@ header h1 {
   box-shadow: 0 6px 16px rgba(0,0,0,0.5);
 }
 
-.option-btn.correct { background: #28a745 !important; color: #fff; }
-.option-btn.wrong { background: #dc3545 !important; color: #fff; }
-
-
+/* 4/4 sayacı kartların altında */
+#result {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #fff;
+}
+#restartBtn {
+  margin-top: 20px;
+  height: auto;
+  width: 100px;
+  font-weight: bold;
+  padding: 20px 0;
+  border-radius: 20px;
+  background: #fff;
+  color: #000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.2s;
+  cursor: pointer;
+  text-align: center;
+}
 
 /* MOBİL - butonlar üst üste, ortada */
 @media (max-width: 600px) {
