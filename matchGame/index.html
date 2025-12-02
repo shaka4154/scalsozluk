@@ -10,52 +10,19 @@
 
 <header>
   <img src="images/image.png" alt="Okul Logo" class="logo">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </header>
-<audio id="bgMusic" autoplay loop>
-  <source src="music/backgroundmusic.mp3" type="audio/mpeg">
-</audio>
-
-<button id="musicToggle" style="position: fixed; top: 10px; right: 10px; font-size: 24px; background:none; border:none; color:white; z-index:1000; cursor:pointer;">
-  <i class="fa-solid fa-volume-high"></i>
-</button>
-
-<script>
-  const music = document.getElementById('bgMusic');
-  const toggleBtn = document.getElementById('musicToggle');
-  const icon = toggleBtn.querySelector('i');
-
-  toggleBtn.addEventListener('click', () => {
-    if(music.paused){
-      music.play();
-      icon.classList.remove('fa-volume-xmark');
-      icon.classList.add('fa-volume-high');
-    } else {
-      music.pause();
-      icon.classList.remove('fa-volume-high');
-      icon.classList.add('fa-volume-xmark');
-    }
-  });
-</script>
-
-
 
 <div class="container">
-
-  <div class="items">
-    <h2>Atasözleri ve Deyimler</h2>
-  </div>
-
-  <div class="meanings">
-    <h2>Anlamları</h2>
-  </div>
-
+  <div class="items"></div>
+  <div class="meanings"></div>
 </div>
 
 <div class="buttons">
   <button id="checkBtn">Kontrol Et</button>
   <button id="restartBtn">Yeniden Başlat</button>
   <button id="resetSelectionsBtn">Sıfırla</button>
+
 </div>
 
 <div id="result"></div>
