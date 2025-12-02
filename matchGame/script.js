@@ -82,6 +82,11 @@ document.getElementById("checkBtn").addEventListener("click", ()=>{
 document.getElementById("restartBtn").addEventListener("click", ()=>{
   startGame();
 });
+mainMenuBtn.addEventListener('click', () => {
+  // Örnek: başka bir sayfaya yönlendirme
+  window.location.href = "../index.html"; // kendi ana menü sayfanın yolu
+});
+
 
 function shuffleArray(array){
   for(let i=array.length-1;i>0;i--){
