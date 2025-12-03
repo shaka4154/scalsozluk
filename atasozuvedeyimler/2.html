@@ -142,11 +142,6 @@
             videoPlayer.src = videoSrc;
             videoPlayer.load();
             
-            videoPlayer.play().catch(error => {
-                console.error("Video başlatılamadı:", error);
-                alert("Video başlatılamadı! Lütfen oynatıcıdaki 'Oynat' simgesine manuel tıklayın.");
-            });
-            
             backBtn.style.display = 'block'; 
         }
 
@@ -179,3 +174,4 @@
 
 </body>
 </html>
+
