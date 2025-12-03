@@ -14,6 +14,30 @@
             background-color: #1a1a1a;
             font-family: Arial, sans-serif;
             color: #f0f0f0;
+            /* Logo ve menüyü merkezi tutmak için */
+            flex-direction: column;
+        }
+
+        /* Logo ve Menü arasındaki boşluğu azaltmak için düzenleme */
+        #logo-container {
+            text-align: center;
+            /* Ana menüden ayırmak için önceki margin-bottom yerine,
+               bu iki ana blok arasındaki boşluğu düzenleyelim. */
+            margin-bottom: 5px; 
+        }
+
+        .animated-logo {
+            width: 120px; 
+            height: auto;
+            border-radius: 50%; 
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        /* Animasyon Tanımı: Yüzme Efekti */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); } 
+            100% { transform: translateY(0px); }
         }
 
         /* Ana Menü ve Video Alanı Stillendirmesi */
@@ -27,16 +51,18 @@
             background-color: #2c2c2c;
         }
         
-        /* Uyarı Metni Stili */
-        #volume-warning {
-            color: #f39c12; /* Turuncu */
-            font-size: 14px;
+        /* Başlık Stili */
+        #menu-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff; 
             text-align: center;
-            margin-top: 10px;
-            display: none; /* Başlangıçta gizli */
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
-
-        /* Buton Stili */
+        
+        /* Diğer stiller (Butonlar, Video, vb.) değişmedi */
+        #volume-warning { display: none; }
         .btn {
             padding: 15px 30px;
             font-size: 18px;
@@ -50,46 +76,28 @@
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
 
-        /* Yapay Zeka Butonu */
-        #ai-btn { background-color: #e74c3c; /* Kırmızı */ }
-        #ai-btn:hover { background-color: #c0392b; transform: translateY(-1px); }
-
-        /* Robotik Butonu */
-        #robot-btn { background-color: #3498db; /* Mavi */ }
-        #robot-btn:hover { background-color: #2980b9; transform: translateY(-1px); }
-
-        /* Geri Dön Butonu */
-        #back-btn {
-            background-color: #f39c12; /* Turuncu */
-            display: none;
-            margin-top: 15px;
-        }
+        #ai-btn { background-color: #000000; }
+        #ai-btn:hover { background-color: #553535; transform: translateY(-1px); }
+        #robot-btn { background-color: #000000; }
+        #robot-btn:hover { background-color: #58a0d0; transform: translateY(-1px); }
+        #back-btn { background-color: #f39c12; display: none; margin-top: 15px; }
         #back-btn:hover { background-color: #e67e22; }
-        
-        /* Video Boyutları */
-        #video-player {
-            width: 800px;
-            height: auto; 
-            border: none;
-            background-color: black;
-        }
-        
-        /* Video alanı başlangıçta gizli */
-        #video-container {
-            display: none;
-        }
-        
-        /* Mobil Uyum */
+        #video-player { width: 800px; height: auto; border: none; background-color: black; }
+        #video-container { display: none; }
         @media (max-width: 850px) {
-            #video-player {
-                width: 90vw;
-            }
+            #video-player { width: 90vw; }
         }
     </style>
 </head>
 <body>
+    
+    <div id="logo-container">
+        <img src="../matchGame/images/image.png" alt="Logo" class="animated-logo">
+    </div>
 
     <div id="main-menu">
+        <h2 id="menu-title">Ağaç Yaşken Eğilir</h2>
+        
         <button id="ai-btn" class="btn">
             Yapay Zeka Video Oynat
         </button>
@@ -98,15 +106,15 @@
             Robotik Video Oynat
         </button>
     </div>
-
+    
     <div id="video-container">
         <video 
             id="video-player" 
             controls 
             preload="auto"
-            autoplay 
-            muted> </video>
-
+            autoplay>
+        </video>
+        
         <p id="volume-warning">
             🔊 Tarayıcı kısıtlaması nedeniyle video sessiz başladı. Lütfen oynatıcı üzerindeki ses simgesine tıklayın.
         </p>
@@ -121,60 +129,35 @@
         const videoContainer = document.getElementById('video-container');
         const videoPlayer = document.getElementById('video-player');
         const backBtn = document.getElementById('back-btn');
-        const warning = document.getElementById('volume-warning');
         
         // --- YEREL DOSYA YOLLARI ---
-        // Lütfen bu yolların doğru olduğundan emin olun!
         const AI_VIDEO_SRC = "yapayzeka/1.mp4"; 
         const ROBOT_VIDEO_SRC = "video/1.mp4"; 
         // -----------------------------
         
-        /**
-         * Verilen video dosyasını yükler ve ekranı değiştirir.
-         * @param {string} videoSrc - Video dosyasının yolu (SRC)
-         */
         function playVideo(videoSrc) {
-            // Butonları gizle, video alanını göster
             mainMenu.style.display = 'none';
             videoContainer.style.display = 'flex';
             
-            // Video kaynağını ayarla
             videoPlayer.src = videoSrc;
             videoPlayer.load();
-
-            // Sesi baştan sessize alıyoruz (Tarayıcı kısıtlamasını aşmak için)
-            videoPlayer.muted = true;
             
-            // Videoyu oynatmaya çalış
-            videoPlayer.play().then(() => {
-                // Başarılı oynatma durumunda uyarıyı göster
-                warning.style.display = 'block';
-            }).catch(error => {
-                // Hata durumunda (mesela dosya yolu yanlışsa)
-                console.error("Video başlatılamadı veya engellendi:", error);
-                alert("Video dosyası yüklenemedi. Lütfen dosya yollarını kontrol edin: " + videoSrc);
-                goBack(); // Menüye geri dön
+            videoPlayer.play().catch(error => {
+                console.error("Video başlatılamadı:", error);
+                alert("Video başlatılamadı! Lütfen oynatıcıdaki 'Oynat' simgesine manuel tıklayın.");
             });
             
-            // Geri Dön butonunu göster
             backBtn.style.display = 'block'; 
         }
 
-        /**
-         * Ana menüye geri döner.
-         */
         function goBack() {
-            // Video alanını gizle, menüyü göster
             videoContainer.style.display = 'none';
             mainMenu.style.display = 'flex';
             
-            // Video oynatmayı durdur ve sessizliği kaldır
             videoPlayer.pause(); 
             videoPlayer.currentTime = 0; 
 
-            // Geri Dön butonunu ve uyarıyı gizle
             backBtn.style.display = 'none';
-            warning.style.display = 'none';
         }
 
         // --- Olay Dinleyicileri ---
@@ -188,7 +171,6 @@
 
         backBtn.addEventListener('click', goBack);
 
-        // BONUS: Video bittiğinde otomatik menüye dönüş (Daha iyi kullanıcı deneyimi için)
         videoPlayer.onended = function() {
             alert("Video sona erdi. Menüye geri dönülüyor.");
             goBack();
