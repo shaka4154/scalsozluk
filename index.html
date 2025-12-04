@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oyun Menüsü</title>
+<title>Sözün Karakutusu</title>
+
 
 <style>
 body {
@@ -18,7 +19,6 @@ align-items: center; /* Yatayda ortala */
 min-height: 100vh; /* Ekranın tüm yüksekliğini kapla */
 position: relative; /* Footer'ın alt kenarı için referans noktası */
 }
-
 .content-wrapper {
 /* Menü Kapsayıcısını Dikeyde Ortalamak İçin */
 display: flex;
@@ -28,7 +28,7 @@ align-items: center;
 flex-grow: 1; /* Mevcut alanı tamamen doldurarak menünün ortalanmasını sağlar */
 padding-top: 20px; /* Footer'a yer açmak için ekstra boşluk */
 padding-bottom: 50px; /* Footer'a yer açmak için ekstra boşluk */
-width: 100  }
+width: 100 }
 
 .menu-container {
 background: linear-gradient(135deg, #0c8930, #000000);
@@ -52,12 +52,40 @@ transform: translateY(-10px);
 transform: translateY(0px); 
 }
 }
+
+/* YENİ ANIMASYON TANIMI: LOGO ile senkronize olmaması için farklı süre ve gecikme verdik */
+@keyframes float-title {
+0% {
+transform: translateY(0px);
+}
+50% {
+transform: translateY(-8px); /* Biraz daha az hareket etsin */
+}
+100% {
+transform: translateY(0px); 
+}
+}
 /* --- ANİMASYON TANIMI BİTİŞİ --- */
+
+/* --- YENİ EKLENEN BAŞLIK STİLİ --- */
+.menu-title {
+    color: #ffffff; /* Beyaz renk */
+    font-size: 2.2em;
+    margin-bottom: 10px; /* Logo ile arasındaki boşluk */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Hafif gölge */
+    font-weight: bold;
+    letter-spacing: 1px;
+    
+    /* BAŞLIĞA ANİMASYON EKLEME */
+    animation: float-title 2s ease-in-out infinite; /* float-title animasyonunu 2 saniye aralıkla uygula */
+}
+/* ---------------------------------- */
 
 .logo {
 width: 90px;
 margin-bottom: 20px;
-animation: float 1.7s ease-in-out infinite;
+/* Logoda farklı bir süre kullanalım ki, başlıkla senkronize olmayıp daha doğal dursun */
+animation: float 1.7s ease-in-out infinite; 
 cursor: pointer;
 }
 
@@ -144,6 +172,11 @@ width: 70px;
 .logo:hover {
 transform: scale(1.1);
 }
+/* Mobil cihazlarda başlığı biraz küçült */
+.menu-title {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
 }
 </style>
 </head>
@@ -151,7 +184,7 @@ transform: scale(1.1);
 
 <div class="content-wrapper">
 <div class="menu-container">
-<img src="matchGame/images/image.png" alt="Okul Logo" class="logo" id="logo">
+<h1 class="menu-title">Sözün Karakutusu</h1> <img src="matchGame/images/image.png" alt="Okul Logo" class="logo" id="logo">
 
 <div class="buttons">
 <button id="game1Btn">
@@ -165,7 +198,7 @@ Atasözü Bulma Oyunu
 </button>
 
 <button id="game3Btn">
-<img src="matchGame/images/icon3.png" alt="İkinci Oyun Icon" class="btn-icon">
+<img src="matchGame/images/icon3.png" alt="Üçüncü Oyun Icon" class="btn-icon">
 Deyim & Atasözü AVCISI
 </button>
 </div>
@@ -188,6 +221,5 @@ document.getElementById("game3Btn").addEventListener("click", ()=>{
 window.location.href = "https://tyavuzkarsliogullari.github.io/Atasozu-ve-Deyimler-Oyun/";
 });
 </script>
-
 </body>
 </html>
