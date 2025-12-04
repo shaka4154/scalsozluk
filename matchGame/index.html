@@ -9,24 +9,38 @@
 <body>
 
 <header>
-  <img src="images/image.png" alt="Okul Logo" class="logo">
-
+ <img src="images/image.png" alt="Okul Logo" class="logo">
+  <button id="helpBtn" class="help-button">?</button>
 </header>
 
 <div class="container">
-  <div class="items"></div>
-  <div class="meanings"></div>
+ <div class="items"></div>
+ <div class="meanings"></div>
 </div>
 
 <div class="buttons">
-  <button id="checkBtn">Kontrol Et</button>
-  <button id="mainMenuBtn">Ana Menü</button>
-  <button id="restartBtn">Yeniden Başlat</button>
-  <button id="resetSelectionsBtn">Sıfırla</button>
-
+ <button id="checkBtn">Kontrol Et</button>
+ <button id="mainMenuBtn">Ana Menü</button>
+ <button id="restartBtn">Yeniden Başlat</button>
+ <button id="resetSelectionsBtn">Sıfırla</button>
 </div>
 
 <div id="result"></div>
+
+<div id="helpModal" class="modal">
+  <div class="modal-content">
+    <span class="close-button">&times;</span>
+    <h2>❓ Nasıl Oynanır?</h2>
+    <p>Bu oyunda, sol tarafta gördüğünüz **atasözlerinin başlangıçlarını** sağ tarafta gördüğünüz **anlamlarıyla** eşleştirmeniz gerekmektedir.</p>
+    <ul>
+      <li>**Eşleştirme:** Soldaki bir atasözü parçasına tıklayın, ardından sağdaki bir anlam parçasına tıklayın. Seçimleriniz eşleşmeyi bekleyen şekilde renklenecektir.</li>
+      <li>**Kontrol Et:** Eşleştirmelerinizi tamamladığınızda **"Kontrol Et"** butonuna basın. Doğru eşleşmeler onaylanacak, yanlışlar ise sıfırlanacaktır.</li>
+      <li>**Sıfırla:** Yaptığınız tüm eşleştirmeleri silmek ve baştan başlamak için **"Sıfırla"** butonunu kullanın.</li>
+      <li>**Yeniden Başlat:** Tüm oyunu ve puanınızı sıfırlayarak yeni bir setle başlamak için **"Yeniden Başlat"** butonuna basın.</li>
+    </ul>
+    <p>İyi eğlenceler!</p>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
