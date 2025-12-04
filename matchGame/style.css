@@ -1,125 +1,228 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #000;
-  margin: 0;
-  padding: 20px;
+ font-family: Arial, sans-serif;
+ text-align: center;
+ background: #000;
+ margin: 0;
+ padding: 20px;
 }
 
 header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin-bottom: 20px;
+  /* Header'ı position:relative yap ki, içindeki absolute elementler (yardım butonu) buna göre hizalansın */
+  position: relative; 
 }
 
 .logo {
-  width: 100px;
-  height: auto;
-  margin-bottom: 10px;
+ width: 100px;
+ height: auto;
+ margin-bottom: 10px;
 }
 
 h1 {
-  margin: 0;
-  color: #fff;
+ margin: 0;
+ color: #fff;
 }
 
 /* YAN YANA MERKEZDE */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  margin-bottom: 20px;
+ display: flex;
+ justify-content: center;
+ align-items: flex-start;
+ gap: 20px;
+ margin-bottom: 20px;
 
-  /* EKRAN DARSA KENDİNİ OTOMATİK KÜÇÜLTÜR */
-  transform: scale(1);
-  transform-origin: top center;
+ /* EKRAN DARSA KENDİNİ OTOMATİK KÜÇÜLTÜR */
+ transform: scale(1);
+ transform-origin: top center;
 }
 
 /* Sütunlar */
 .items, .meanings {
-  width: 45%;
-  min-width: 120px; 
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+ width: 45%;
+ min-width: 120px; 
+ display: flex;
+ flex-direction: column;
+ gap: 15px;
 }
-#mainMenuBtn{
-   position: absolute;
-  top: 20px;
-  left : 20px;
-  background: #000000;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  z-index: 1000;
+
+/* Ana Menü Butonu */
+#mainMenuBtn {
+ position: absolute;
+ top: 20px;
+ left: 20px;
+ background: #000000;
+ color: #fff;
+ padding: 10px 15px;
+ border-radius: 8px;
+ border: none;
+ cursor: pointer;
+ z-index: 1000;
 }
 
 .item, .meaning {
-  padding: 12px 20px;
-  border-radius: 12px;
-  background: white;
-  color: #000;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ padding: 12px 20px;
+ border-radius: 12px;
+ background: white;
+ color: #000;
+ cursor: pointer;
+ user-select: none;
+ transition: all 0.2s;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .item:hover, .meaning:hover {
-  transform: scale(1.05);
+ transform: scale(1.05);
 }
 
 .selected, .matched {
-  background: #8e1919;
-  color: #fff;
+ background: #8e1919;
+ color: #fff;
 }
 
 .correct { background: #28a745 !important; }
 .wrong { background: #dc3545 !important; }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin: 5px;
-  cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  background: #000;
-  color: #fff;
+.buttons button { /* Tüm button'ları kapsayıcıdan seçmek için düzenlendi */
+ padding: 10px 20px;
+ font-size: 16px;
+ margin: 5px;
+ cursor: pointer;
+ border: none;
+ border-radius: 8px;
+ background: #000;
+ color: #fff;
 }
 
-button:hover {
-  background: #444;
+.buttons button:hover {
+ background: #444;
 }
 
 #result {
-  margin-top: 15px;
-  font-weight: bold;
-  font-size: 18px;
-  color: #ffffff;
+ margin-top: 15px;
+ font-weight: bold;
+ font-size: 18px;
+ color: #ffffff;
 }
 
-/* MOBİL - HER ŞEYİ ZORLA KÜÇÜLT, ASLA ALT ALTA GEÇMESİN */
+/* ======================================================================= */
+/* YENİ EKLENEN STİLLER: YARDIM BUTONU VE MODAL */
+/* ======================================================================= */
+
+.help-button {
+    /* MainMenuBtn'e göre sağda konumlandırma için */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    background-color: #0c8930; /* Yeşil renk */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border: 2px solid white;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s, transform 0.2s;
+    z-index: 1000; 
+}
+
+.help-button:hover {
+    background-color: #096a24;
+    transform: scale(1.05);
+}
+
+/* --- MODAL (NASIL OYNANIR PENCERESİ) STİLLERİ --- */
+.modal {
+    display: none; /* Varsayılan olarak gizli */
+    position: fixed; /* Sabit konum */
+    z-index: 2000; /* Diğer her şeyin ve butonların üstünde */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* Yarı saydam siyah arka plan */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Yukarıdan %10 boşluk, ortalanmış */
+    padding: 30px;
+    border: none; 
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    color: #333;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    text-align: left;
+}
+
+/* Modalın açılış animasyonu */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 10%; opacity: 1} 
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.modal-content h2 {
+    color: #0c8930;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.modal-content ul {
+    list-style-type: disc;
+    padding-left: 30px;
+}
+
+/* ======================================================================= */
+/* MOBİL DÜZENLEMELERİ */
+/* ======================================================================= */
 @media (max-width: 600px) {
 
-  .container {
-    gap: 10px;
-    transform: scale(0.78); /* TÜM LAYOUT’U KÜÇÜLTÜR */
-  }
+ .container {
+ gap: 10px;
+  transform: scale(0.78); /* TÜM LAYOUT’U KÜÇÜLTÜR */
+ }
 
-  .items, .meanings {
-    width: 50%;
-    min-width: 100px;
-  }
+ .items, .meanings {
+  width: 50%;
+  min-width: 100px;
+ }
 
-  .item, .meaning {
-    font-size: 13px;
-    padding: 8px;
-  }
+ .item, .meaning {
+  font-size: 13px;
+  padding: 8px;
+ }
 
-  #result { font-size: 16px; }
+ #result { font-size: 16px; }
+
+  /* Mobil cihazda Modal penceresinin ekranın daha büyük bir kısmını kaplaması için */
+  .modal-content {
+      margin: 20px auto; 
+      width: 90%;
+  }
 }
